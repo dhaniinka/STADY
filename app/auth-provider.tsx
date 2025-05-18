@@ -25,7 +25,7 @@ const getSupabaseClient = () => {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      storageKey: "quizwiz-auth-storage", // Kunci penyimpanan yang konsisten
+      storageKey: "stady-auth-storage", // Kunci penyimpanan yang konsisten
       detectSessionInUrl: true, // Deteksi sesi dari URL
     },
   })
@@ -282,9 +282,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const result = await signUp(formData)
       return result
     } catch (error) {
-      console.error("Error in handleSignUp:", error)
-      return { user: null, error: error.message || "Failed to sign up" }
+    console.error("Error in handleSignUp:", error);
+  
+    let message = "Failed to sign up";
+    if (error instanceof Error) {
+    message = error.message;
     }
+
+  return { user: null, error: message };
+}
   }
 
   const handleSignIn = async (email: string, password: string) => {
