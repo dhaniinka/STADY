@@ -306,7 +306,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     let message = "Failed to sign in";
     if (error instanceof Error) {
     message = error.message;
-   }
+  }
 
   return { user: null, error: message };
 }
@@ -352,12 +352,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
-      return result
-    } catch (error) {
-      console.error("Error in handleSetUserRole:", error)
-      return { success: false, error: error.message || "Failed to set user role" }
-    }
-  }
+       return { success: result.success }; // ✅ penting
+      } catch (error: any) {
+        console.error("Error in handleSetUserRole:", error);
+        return { success: false, error: error.message || "Failed to set role" }; // ✅ penting
+      }
+      };
 
   return (
     <AuthContext.Provider
