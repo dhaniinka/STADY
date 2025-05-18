@@ -284,7 +284,7 @@ export default function QuizPage() {
                   {currentQuestion.text}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {currentQuestion.options.map((option) => {
+                  {currentQuestion.options.map((option: { id: string; text: string }) => {
                     const isCorrect =
                       isAnswered && option.id === currentQuestion.correctAnswer;
                     const isIncorrect =
