@@ -301,9 +301,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const result = await signIn(formData)
       return result
     } catch (error) {
-      console.error("Error in handleSignIn:", error)
-      return { user: null, error: error.message || "Failed to sign in" }
-    }
+    console.error("Error in handleSignIn:", error);
+  
+    let message = "Failed to sign in";
+    if (error instanceof Error) {
+    message = error.message;
+   }
+
+  return { user: null, error: message };
+}
   }
 
   const handleSignOut = async () => {
