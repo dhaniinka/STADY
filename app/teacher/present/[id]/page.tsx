@@ -293,13 +293,13 @@ export default function PresentQuizPage() {
                       Question Breakdown
                     </h2>
 
-                    {quiz.questions.map((question, index) => (
+                    {quiz.questions.map((question: { id: string; text: string }, index : number) => (
                       <div key={question.id} className="space-y-2">
                         <div className="font-medium">
                           Question {index + 1}: {question.text}
                         </div>
                         <div className="flex justify-between items-center">
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-sm text-muted-foreground">S
                             Correct: 65%
                           </div>
                           <Progress value={65} className="w-2/3 h-2" />
