@@ -11,6 +11,7 @@ import { useAuth } from "../../../../app/auth-provider";
 import { startQuizSession } from "../../../../app/actions/quiz-actions";
 import { toast } from "../../../../components/ui/use-toast";
 import { supabase } from "../../../../lib/supabase-client";
+import { Question } from "../../../../src/models/question";
 
 // Mock quiz data
 // const mockQuiz = {
@@ -293,7 +294,7 @@ export default function PresentQuizPage() {
                       Question Breakdown
                     </h2>
 
-                    {quiz.questions.map((question: { id: string; text: string }, index : number) => (
+                    {quiz.questions.map((question: Question, index: number) => (
                       <div key={question.id} className="space-y-2">
                         <div className="font-medium">
                           Question {index + 1}: {question.text}
